@@ -1,0 +1,58 @@
+﻿<Window x:Class="Astar.Windows.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Astar.Windows"
+        mc:Ignorable="d"
+        Title="AboutWindow" Height="1000" Width="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <TextBlock FontSize="30" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Label FontWeight="Bold">A* Visualizer Instructions</Label>
+                <LineBreak/>
+                <Label Foreground="Blue">Use the top Bar to: </Label>
+                <LineBreak/>
+                Resize, Clear the Board, and Change draw Mode.
+                <LineBreak/>
+                <Label Foreground="Blue">Use the first bottom Bar to: </Label>
+                <LineBreak/>
+                Adjust the coefficients for actual distance from
+                <LineBreak/>
+                start and absolute distance(as the crow flies)
+                <LineBreak/>
+                from destination.
+                <LineBreak/>
+                Additionally, you can adjust the gradient animation
+                <LineBreak/>
+                time in seconds
+                <LineBreak/>
+                Finally, you can change the traversal pattern from:
+                <LineBreak/>
+                Orthogonal, Orthogonal + Diagonal, and Orthogonal +
+                <LineBreak/>
+                Diagonal No Corners (Diagonal move doesn't
+                <LineBreak/>
+                have obstacles on sides)
+                <LineBreak/>
+                <Label Foreground="Blue">Use the Last bottom Bar to: </Label>
+                <LineBreak/>
+                Calculate the path: this is an instant Operation
+                <LineBreak/>
+                the screen.
+                <LineBreak/>
+                Animate Gradient: the Gradient is animated as 
+                <LineBreak/>
+                the algorithm traverses the board.
+                <LineBreak/>
+                Total cost is calculated as the total distance
+                <LineBreak/>
+                from start to finish.
+                <LineBreak/>
+                To Clear gradient and path from board,
+                <LineBreak/>
+                continue to draw.
+            </TextBlock>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,98 @@
+﻿<Window x:Class="Astar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Astar" xmlns:convert="clr-namespace:Astar.Converters" xmlns:multiTile="clr-namespace:Astar.Models" xmlns:views="clr-namespace:Astar.Views" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:behav="clr-namespace:Astar.Behaviors"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <convert:TileStateColorConverter x:Key="tileStateConvert"/>
+        <convert:BoolInvertConverter x:Key="boolInverter"/>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding WindowIsLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <views:GridControlView Grid.Row="0" DataContext="{Binding GridControl}" IsEnabled="{Binding DataContext.GradGenerationInProgress , RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Converter={StaticResource boolInverter}}" />
+
+        <Viewbox Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Tiles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl ItemsSource="{Binding }">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Height="5" Width="5" Stroke="Aqua" StrokeThickness="0.1">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding MouseMoveChange}" PassEventArgsToCommand="True"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="MouseDown">
+                                                <i:InvokeCommandAction Command="{Binding MouseDownChange}" PassEventArgsToCommand="True"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Rectangle.Fill>
+                                            <Binding Path="State" Converter="{StaticResource tileStateConvert}">
+                                                <Binding.ConverterParameter>
+                                                    <x:Array Type="{x:Type system:String}">
+                                                        <system:String>Gray</system:String>
+                                                        <system:String>Red</system:String>
+                                                        <system:String>Blue</system:String>
+                                                        <system:String>Green</system:String>
+                                                        <system:String>Orange</system:String>
+                                                        <system:String>PeachPuff</system:String>
+                                                    </x:Array>
+                                                </Binding.ConverterParameter>
+                                            </Binding>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Viewbox>
+
+        <views:PathFindingConfigurationView Grid.Row="2" DataContext="{Binding PathConfig}" IsEnabled="{Binding DataContext.GradGenerationInProgress , RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Converter={StaticResource boolInverter}}"/>
+        
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Calculate" Command="{Binding CalculatePathCommand}" />
+            <Button Grid.Column="1" Content="Animate Gradient" Command="{Binding AnimateGradientCommand}" />
+            <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <i:Interaction.Behaviors>
+                    <behav:LabelTextInsertionBehavior Before="Total Distance: " Value="{Binding TotalResultantDistance}" After="."/>
+                </i:Interaction.Behaviors>
+            </Label>
+        </Grid>
+    </Grid>
+</Window>

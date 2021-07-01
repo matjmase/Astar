@@ -1,0 +1,53 @@
+﻿<Window x:Class="Astar.Windows.ConfigSizeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Astar.Windows" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:behav="clr-namespace:Astar.Behaviors"
+        mc:Ignorable="d"
+        Title="ConfigSizeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0">
+            <Label Content="Configuration"/>
+        </Viewbox>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="Rows"/>
+            </Viewbox>
+            <Viewbox Grid.Row="0" Grid.Column="2">
+                <TextBlock Text="Columns"/>
+            </Viewbox>
+            <Viewbox Grid.Row="1" Grid.Column="1">
+                <Label Content="X"/>
+            </Viewbox>
+
+            <TextBox Grid.Row="1" Grid.Column="0" FontSize="40" VerticalAlignment="Center" TextAlignment="Center">
+                <i:Interaction.Behaviors>
+                    <behav:NumericTextboxBehavior Max="100" Min="1" Value="{Binding IntRows, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConfigSizeWindow}}}"/>
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBox Grid.Row="1" Grid.Column="2" FontSize="40" VerticalAlignment="Center" TextAlignment="Center">
+                <i:Interaction.Behaviors>
+                    <behav:NumericTextboxBehavior Max="100" Min="1"  Value="{Binding IntColumns, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConfigSizeWindow}}}"/>
+                </i:Interaction.Behaviors>
+            </TextBox>
+        </Grid>
+        <Button Grid.Row="3" Background="Green" Foreground="White" Content="Accept" FontSize="60" Command="{Binding AcceptCommand , RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConfigSizeWindow}}}"/>
+    </Grid>
+</Window>

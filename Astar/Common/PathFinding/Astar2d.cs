@@ -154,7 +154,7 @@ namespace Astar.Common.PathFinding
             if (applicable.Count == 0)
                 throw new ArgumentException("Path is not acheivable with current gradient");
 
-            var min = applicable.OrderBy(e => e.Item2).First();
+            var min = applicable.MinOrDefault(e => e.Item2);
 
             return min.Item1;
         }

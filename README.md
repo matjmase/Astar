@@ -7,7 +7,9 @@ Optimized version of Djikstra's algorithm used to find paths between two points 
 <img src="https://github.com/matjmase/Astar/blob/main/Screenshots/Legend.jpg" width="200" />
 
 A. Configure the size of the grid (E).
+
 B. Clear all items in the grid (E).
+
 C. Draw mode. Click to toggle.
 D. About popup
 E. Drawable grid.

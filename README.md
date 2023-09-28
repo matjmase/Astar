@@ -4,7 +4,7 @@ Optimized version of Djikstra's algorithm used to find paths between two points 
 
 ## Legend
 
-<img src="https://github.com/matjmase/Astar/blob/main/Screenshots/Legend.jpg" width="200" />
+<img src="https://github.com/matjmase/Astar/blob/main/Screenshots/Legend.jpg" width="400" />
 
 A. Configure the size of the grid (E).
 

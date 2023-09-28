@@ -11,14 +11,23 @@ A. Configure the size of the grid (E).
 B. Clear all items in the grid (E).
 
 C. Draw mode. Click to toggle.
+
 D. About popup
+
 E. Drawable grid.
+
 F. Distance coefficient from start to any given point(wraps around curves and obstacles).
+
 G. Distance coefficient from any give point to destination (as the crow flies, no obstacles taken in to account.)
+
 H. Delta Time for the Animate Gradient function (K).
+
 I. Pathing mode. Orthogonal, Orthogonal and Diagonal, Orthogonal and Diagonal with no corner obstructing the diagonal move.
+
 J. Calculates the path from the Start point to the End point.
+
 K. Animates gradient so that you can see how the algorithm works.
+
 L. Displays the distance of the path.
 
 ## Experiment
